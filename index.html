@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dominó Educativo - HTML, CSS e JS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: white;
+    }
+
+    h1 {
+      margin: 20px;
+    }
+
+    .tabuleiro {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .peca {
+      width: 220px;
+      height: 80px;
+      border: 2px solid black;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      page-break-inside: avoid;
+    }
+
+    .lado {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+      border-right: 2px solid black;
+      padding: 5px;
+    }
+
+    .lado:last-child {
+      border-right: none;
+      font-weight: normal;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+      .peca {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Dominó Educativo</h1>
+  <p>Imprima, recorte e jogue associando o código à sua explicação!</p>
+
+  <div class="tabuleiro" id="tabuleiro"></div>
+
+  <script>
+    // Lista de pares (código, explicação)
+    let pares = [
+      ["<h1>", "Título principal da página"],
+      ["<p>", "Parágrafo de texto"],
+      ["<img>", "Insere uma imagem"],
+      ["<a>", "Cria um link"],
+      ["<ul>", "Lista não ordenada"],
+      ["<ol>", "Lista ordenada"],
+      ["<li>", "Item de lista"],
+      ["<br>", "Quebra de linha"],
+      ["background-color", "Define a cor de fundo"],
+      ["color", "Define a cor do texto"],
+      ["font-size", "Define o tamanho da fonte"],
+      ["border", "Cria borda em um elemento"],
+      ["let", "Declara uma variável em JavaScript"],
+      ["function()", "Cria uma função em JavaScript"],
+      ["console.log()", "Mostra mensagens no console"],
+      ["if(){}", "Estrutura condicional"],
+      ["for()", "Laço de repetição"],
+      ["addEventListener", "Captura eventos (ex: clique)"]
+    ];
+
+    let tabuleiro = document.getElementById("tabuleiro");
+
+    pares.forEach(par => {
+      let peca = document.createElement("div");
+      peca.classList.add("peca");
+
+      let lado1 = document.createElement("div");
+      lado1.classList.add("lado");
+      lado1.textContent = par[0];
+
+      let lado2 = document.createElement("div");
+      lado2.classList.add("lado");
+      lado2.textContent = par[1];
+
+      peca.appendChild(lado1);
+      peca.appendChild(lado2);
+
+      tabuleiro.appendChild(peca);
+    });
+  </script>
+</body>
+</html>
